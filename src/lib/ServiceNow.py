@@ -17,6 +17,12 @@ class Base(object):
     def create(self, params):
         return self.Connection._post(self.__table__, params).json()
 
+    def update(self, params):
+        return self.Connection._update(self.__table__, params).json()
+
+    def delete(self, params):
+        return self.Connection._delete(self.__table__, params).json()
+
 class Server(Base):
     __table__ = 'cmdb_ci_server_list.do'
 
