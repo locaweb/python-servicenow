@@ -1,0 +1,18 @@
+#!/usr/bin/python
+
+from servicenow import ServiceNow
+from servicenow import Connection
+
+conn = Connection.Auth(username='edsu', password='bele', instance='demo')
+inc = ServiceNow.Incident(conn)
+srv = ServiceNow.Server(conn)
+grp = ServiceNow.Group(conn)
+
+machine = srv.fetch_one({'name': 'nibbler0001'})
+print machine
+
+inc = inc.fetch_one('number': 'INC123456'})
+print inc
+
+group = grp.fetch_one({'name': 'CT-Linux'})
+print group
