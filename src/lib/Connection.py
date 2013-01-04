@@ -21,8 +21,8 @@ class Auth(object):
     def _post(self, table, params):
         return self.session.post('%s/%s?JSON&sysparm_action=insert' % (self.instance, table), params=json.dumps(params))
 
-    def _update(self, table, params):
-        return self.session.post('%s/%s?JSON&sysparm_action=update' % (self.instance, table), params=json.dumps(params))
+    #def _update(self, table, params):
+    #    return self.session.post('%s/%s?JSON&sysparm_action=update' % (self.instance, table), params=json.dumps(params))
 
     def _delete(self, table, params):
         if not 'sysparm_sys_id' in params:
