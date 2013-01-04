@@ -3,7 +3,7 @@ import logging
 import json
 
 class Auth(object):
-    def __init__(self, username, password, instance, debug = False):
+    def __init__(self, username, password, instance, debug=False):
         self.username = username
         self.password = password
         if 'https://' in instance:
@@ -14,7 +14,7 @@ class Auth(object):
         self.session.auth = (self.username, self.password)
 
     def _get(self, table, meta):
-        query = "^".join([ "%s=%s" % (field, value) for field, value in meta.iteritems() ])
+        query = '^'.join(['%s=%s' % (field, value) for field, value in meta.iteritems()])
         params = {'JSON':'', 'sysparm_action': 'getRecords', 'sysparm_query': query}
         return self.session.get('%s/%s' % (self.instance, table), params=params)
 
