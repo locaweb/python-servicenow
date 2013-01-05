@@ -1,4 +1,20 @@
-#!/usr/bin/python
+# Python ServiceNow
+* http://wiki.servicenow.com/index.php?title=JSON_Web_Service
+
+## Python Library to interact and manage the ServiceNow database
+
+## Usage:
+### Build the package
+
+  $ dpkg-buildpackage -us -uc -rfakeroot
+  $ dpkg -i python-servicenow-<version>.deb
+
+### Using setup.py
+
+  $ python setup.py build
+  $ python setup.py install
+
+### Example
 
 from servicenow import ServiceNow
 from servicenow import Connection
