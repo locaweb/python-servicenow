@@ -24,10 +24,13 @@ class Base(object):
         return self.Connection._delete(self.__table__, params).json()
 
 class Server(Base):
-    __table__ = 'cmdb_ci_server_list.do'
+    __table__ = 'cmdb_ci_server.do'
 
 class Incident(Base):
     __table__ = 'incident.do'
 
 class Group(Base):
     __table__ = 'sys_user_group.do'
+
+class Change(Base):
+    __table__ = 'change_request.do'
