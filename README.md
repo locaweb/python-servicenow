@@ -6,35 +6,35 @@
 ## Usage:
 ### Build the package
 
-  $ dpkg-buildpackage -us -uc -rfakeroot
-  $ dpkg -i python-servicenow-<version>.deb
+    $ dpkg-buildpackage -us -uc -rfakeroot
+    $ dpkg -i python-servicenow-<version>.deb
 
 ### Using setup.py
 
-  $ python setup.py build
-  $ python setup.py install
+    $ python setup.py build
+    $ python setup.py install
 
 ### Example
 
-  #!/usr/bin/python
+    #!/usr/bin/python
 
-  from servicenow import ServiceNow
-  from servicenow import Connection
+    from servicenow import ServiceNow
+    from servicenow import Connection
 
-  conn = Connection.Auth(username='edsu', password='bele', instance='demo')
-  inc = ServiceNow.Incident(conn)
-  srv = ServiceNow.Server(conn)
-  grp = ServiceNow.Group(conn)
-  chg = ServiceNow.Change(conn)
+    conn = Connection.Auth(username='edsu', password='bele', instance='demo')
+    inc = ServiceNow.Incident(conn)
+    srv = ServiceNow.Server(conn)
+    grp = ServiceNow.Group(conn)
+    chg = ServiceNow.Change(conn)
 
-  machine = srv.fetch_one({'name': 'machine0001'})
-  print machine
+    machine = srv.fetch_one({'name': 'machine0001'})
+    print machine
 
-  inc = inc.fetch_one({'number': 'INC123456'})
-  print inc
+    inc = inc.fetch_one({'number': 'INC123456'})
+    print inc
 
-  group = grp.fetch_one({'name': 'MY-Team'})
-  print group
+    group = grp.fetch_one({'name': 'MY-Team'})
+    print group
 
-  changes = chg.fetch_all({'cmdb_ci': machine['sys_id'], 'review_status': 3})
-  print changes
+    changes = chg.fetch_all({'cmdb_ci': machine['sys_id'], 'review_status': 3})
+    print changes
