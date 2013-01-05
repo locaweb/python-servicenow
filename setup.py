@@ -5,8 +5,8 @@ from setuptools import setup
 setup(
     name = 'servicenow',
     version = '0.0.1',
-    description = 'A library to manage data in the Service Now database',
-    long_description = 'A library to manage Incidents, Service Requests, CMDB Items in the Service Now database',
+    description = 'Python Library to interact and manage the ServiceNow database',
+    long_description = 'Python Library to interact and manage the ServiceNow database',
     maintainer = 'Juliano Martinez',
     maintainer_email = 'juliano.martinez@locaweb.com.br',
     package_dir={'servicenow': 'src/lib'},
