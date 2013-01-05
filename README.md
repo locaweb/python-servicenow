@@ -16,23 +16,25 @@
 
 ### Example
 
-from servicenow import ServiceNow
-from servicenow import Connection
+  #!/usr/bin/python
 
-conn = Connection.Auth(username='edsu', password='bele', instance='demo')
-inc = ServiceNow.Incident(conn)
-srv = ServiceNow.Server(conn)
-grp = ServiceNow.Group(conn)
-chg = ServiceNow.Change(conn)
+  from servicenow import ServiceNow
+  from servicenow import Connection
 
-machine = srv.fetch_one({'name': 'machine0001'})
-print machine
+  conn = Connection.Auth(username='edsu', password='bele', instance='demo')
+  inc = ServiceNow.Incident(conn)
+  srv = ServiceNow.Server(conn)
+  grp = ServiceNow.Group(conn)
+  chg = ServiceNow.Change(conn)
 
-inc = inc.fetch_one({'number': 'INC123456'})
-print inc
+  machine = srv.fetch_one({'name': 'machine0001'})
+  print machine
 
-group = grp.fetch_one({'name': 'MY-Team'})
-print group
+  inc = inc.fetch_one({'number': 'INC123456'})
+  print inc
 
-changes = chg.fetch_all({'cmdb_ci': machine['sys_id'], 'review_status': 3})
-print changes
+  group = grp.fetch_one({'name': 'MY-Team'})
+  print group
+
+  changes = chg.fetch_all({'cmdb_ci': machine['sys_id'], 'review_status': 3})
+  print changes
