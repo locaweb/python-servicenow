@@ -38,3 +38,6 @@
 
     changes = chg.fetch_all({'cmdb_ci': machine['sys_id'], 'review_status': 3})
     print changes
+
+    ticket = tkt.fetch_one({'number': 'TICKET0185412'})
+    print ticket

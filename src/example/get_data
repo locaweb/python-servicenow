@@ -8,6 +8,7 @@ inc = ServiceNow.Incident(conn)
 srv = ServiceNow.Server(conn)
 grp = ServiceNow.Group(conn)
 chg = ServiceNow.Change(conn)
+tkt = ServiceNow.Ticket(conn)
 
 machine = srv.fetch_one({'name': 'machine0001'})
 print machine
@@ -20,3 +21,6 @@ print group
 
 changes = chg.fetch_all({'cmdb_ci': machine['sys_id'], 'review_status': 3})
 print changes
+
+ticket = tkt.fetch_one({'number': 'TICKET0185412'})
+print ticket

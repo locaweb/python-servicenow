@@ -34,3 +34,6 @@ class Group(Base):
 
 class Change(Base):
     __table__ = 'change_request.do'
+
+class Ticket(Base):
+    __table__ = 'u_service_desk.do'
