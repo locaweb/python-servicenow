@@ -9,6 +9,6 @@ Homepage: <insert the upstream URL, if relevant>
 Package: python-servicenow
 Architecture: any
 X-Python-Version: >= 2.6
-Depends: ${shlibs:Depends}, ${misc:Depends}, python-requests
+Depends: ${shlibs:Depends}, ${misc:Depends}, python-requests, python-redis
 Description: Python Library to interact and manage the ServiceNow database
  Python Library to interact and manage the ServiceNow database
