@@ -41,3 +41,7 @@
 
     ticket = tkt.fetch_one({'number': 'TICKET0185412'})
     print ticket
+
+### Depends
+* python-requests
+* python-redis
