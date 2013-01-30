@@ -1,0 +1,8 @@
+python-servicenow (0.0.1-1) stable; urgency=low
+
+  * commit 5ee0a767e9c668210434b354fcc26e41057ff5ee
+  * Author: Juliano Martinez <juliano@martinez.io>
+  * Date:   Sat Jan 5 10:38:38 2013 -0200
+  *   updated setup.py
+
+ -- Juliano Martinez <juliano.martinez@locaweb.com.br>  Wed, 30 Jan 2013 18:31:36 -0200
