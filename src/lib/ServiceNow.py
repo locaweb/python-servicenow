@@ -12,7 +12,10 @@ class Base(object):
 
     @Utils.cached()
     def fetch_one(self, params):
-        return self.Connection._get(self.__table__, params).json()['records'][0]
+        try:
+            return self.Connection._get(self.__table__, params).json()['records'][0]
+        except IndexError:
+            return []
 
     def create(self, params):
         return self.Connection._post(self.__table__, params).json()
