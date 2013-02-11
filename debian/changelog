@@ -1,3 +1,12 @@
+python-servicenow (0.0.1-2) stable; urgency=low
+
+  * commit a0057b2836e04ec0b2bef025923143468da5e016
+  * Author: Juliano Martinez <juliano@martinez.io>
+  * Date:   Sun Feb 10 20:42:29 2013 -0200
+  *   fixing IndexError when fetch_one is empty
+
+ -- Juliano Martinez <juliano.martinez@locaweb.com.br>  Sun, 10 Feb 2013 23:58:35 -0200
+
 python-servicenow (0.0.1-1) stable; urgency=low
 
   * commit 5ee0a767e9c668210434b354fcc26e41057ff5ee
