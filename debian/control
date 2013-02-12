@@ -9,6 +9,6 @@ Homepage: https://github.com/locaweb/python-servicenow
 Package: python-servicenow
 Architecture: any
 X-Python-Version: >= 2.6
-Depends: ${shlibs:Depends}, ${misc:Depends}, python-requests, python-redis
+Depends: ${shlibs:Depends}, ${misc:Depends}, python-requests (>=1.0.4), python-redis
 Description: Python Library to interact and manage the ServiceNow database
  Python Library to interact and manage the ServiceNow database
