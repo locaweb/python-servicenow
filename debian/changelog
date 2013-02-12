@@ -1,3 +1,12 @@
+python-servicenow (0.0.1-3) stable; urgency=low
+
+  * commit 236663b6ea4180d52f83377c2d907460f1c25a3b
+  * Author: Juliano Martinez <juliano@martinez.io>
+  * Date:   Tue Feb 12 16:22:52 2013 -0200
+  *   fixing None error
+
+ -- Juliano Martinez <juliano.martinez@locaweb.com.br>  Tue, 12 Feb 2013 16:23:10 -0200
+
 python-servicenow (0.0.1-2) stable; urgency=low
 
   * commit a0057b2836e04ec0b2bef025923143468da5e016
