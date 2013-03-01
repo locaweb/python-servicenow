@@ -4,7 +4,7 @@ Priority: extra
 Maintainer: Juliano Martinez <juliano.martinez@locaweb.com.br>
 Build-Depends: debhelper (>= 7.0.50~)
 Standards-Version: 3.8.4
-Homepage: <insert the upstream URL, if relevant>
+Homepage: https://github.com/locaweb/python-servicenow
 
 Package: python-servicenow
 Architecture: any
