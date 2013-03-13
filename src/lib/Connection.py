@@ -18,7 +18,6 @@ class Auth(object):
         if metaon:
             query += '^' + '^'.join(['%sON%s' % (field, value) for field, value in metaon.iteritems()])
         params = {'JSON':'', 'sysparm_action': 'getRecords', 'sysparm_query': query}
-        print params
         return self.session.get('%s/%s' % (self.instance, table), params=params)
 
     def _post(self, table, params):
