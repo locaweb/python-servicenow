@@ -7,24 +7,24 @@ class Base(object):
         self.Connection = Connection
 
     @Utils.cached()
-    def fetch_all(self, params):
-        return self.Connection._get(self.__table__, params).json()
+    def fetch_all(self, *args):
+        return self.Connection._get(self.__table__, *args).json()
 
     @Utils.cached()
-    def fetch_one(self, params):
+    def fetch_one(self, *args):
         try:
-            return self.Connection._get(self.__table__, params).json()['records'][0]
+            return self.Connection._get(self.__table__, *args).json()['records'][0]
         except IndexError:
             return {}
 
-    def create(self, params):
-        return self.Connection._post(self.__table__, params).json()
+    def create(self, *args):
+        return self.Connection._post(self.__table__, *args).json()
 
-    def update(self, where, params):
-        return self.Connection._update(self.__table__, where, params).json()
+    def update(self, where, *args):
+        return self.Connection._update(self.__table__, where, *args).json()
 
-    def delete(self, params):
-        return self.Connection._delete(self.__table__, params).json()
+    def delete(self, *args):
+        return self.Connection._delete(self.__table__, *args).json()
 
 class Server(Base):
     __table__ = 'cmdb_ci_server.do'
