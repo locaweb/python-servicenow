@@ -1,15 +1,29 @@
-import requests
-import logging
 import json
+import logging
+import requests
 
 class Auth(object):
+    """
+    Creates the connection to be used on each request to servicenow
+    """
+
     def __init__(self, username, password, instance, debug=False):
+        """
+        Receives the username and password to authenticate the user
+        The instance argument is the path of your account on servicenow
+
+        Example:
+
+        >>> conn = Connection.Auth(username="juliano.martinez", password="P4SsW0rD", instance="locaweb")
+        """
         self.username = username
         self.password = password
+
         if 'https://' in instance:
             self.instance = instance
         else:
             self.instance = 'https://%s.service-now.com/' % instance
+
         self.session = requests.Session()
         self.session.auth = (self.username, self.password)
 
