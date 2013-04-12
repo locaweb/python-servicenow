@@ -1,9 +1,12 @@
-# Python ServiceNow
-* http://wiki.servicenow.com/index.php?title=JSON_Web_Service
+Python ServiceNow
+=================
 
-## Python Library to interact and manage the ServiceNow database
+This is a Python Library to interact and manage the ServiceNow database via
+[JSON web service](http://wiki.servicenow.com/index.php?title=JSON_Web_Service).
 
-## Usage:
+Usage:
+------
+
 ### Build the package
 
     $ dpkg-buildpackage -us -uc -rfakeroot
@@ -26,6 +29,7 @@
     srv = ServiceNow.Server(conn)
     grp = ServiceNow.Group(conn)
     chg = ServiceNow.Change(conn)
+    tkt = ServiceNow.Ticket(conn)
 
     machine = srv.fetch_one({'name': 'machine0001'})
     print machine
@@ -43,5 +47,6 @@
     print ticket
 
 ### Depends
+
 * python-requests
 * python-redis
