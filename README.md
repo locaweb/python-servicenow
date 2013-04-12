@@ -24,7 +24,7 @@ Usage:
     from servicenow import ServiceNow
     from servicenow import Connection
 
-    conn = Connection.Auth(username='edsu', password='bele', instance='demo')
+    conn = Connection.Auth(username='edsu', password='bele', instance='servicenowsubdomain')
     inc = ServiceNow.Incident(conn)
     srv = ServiceNow.Server(conn)
     grp = ServiceNow.Group(conn)
@@ -45,6 +45,12 @@ Usage:
 
     ticket = tkt.fetch_one({'number': 'TICKET0185412'})
     print ticket
+
+    # Creating a new ticket based on another one
+    del ticket["number"]
+    new_ticket = tkt.create(ticket)
+    print ticket
+
 
 ### Depends
 
