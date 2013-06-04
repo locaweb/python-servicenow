@@ -6,7 +6,15 @@ class Base(object):
     def __init__(self, Connection):
         self.Connection = Connection
 
-    @Utils.cached()
+    @Utils.cached(ttl=1)
+    def list_by_query(self, *args):
+        return self.Connection._list_by_query(self.__table__, *args).json()
+
+    @Utils.cached(ttl=1)
+    def list(self, *args):
+        return self.Connection._list(self.__table__, *args).json()
+
+    @Utils.cached(ttl=1)
     def fetch_all(self, *args):
         return self.Connection._get(self.__table__, *args).json()
 

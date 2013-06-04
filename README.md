@@ -31,6 +31,10 @@ Usage:
     chg = ServiceNow.Change(conn)
     tkt = ServiceNow.Ticket(conn)
 
+    # Custom table
+    custom = ServiceNow.Base(conn)
+    custom.__table__ = "custom_table.do"
+
     machine = srv.fetch_one({'name': 'machine0001'})
     print machine
 
@@ -41,6 +45,10 @@ Usage:
     print group
 
     changes = chg.fetch_all({'cmdb_ci': machine['sys_id'], 'review_status': 3})
+    print changes
+
+    # list only sys_ids
+    changes = chg.list({'cmdb_ci': machine['sys_id'], 'review_status': 3})
     print changes
 
     ticket = tkt.fetch_one({'number': 'TICKET0185412'})
