@@ -48,3 +48,6 @@ class Change(Base):
 
 class Ticket(Base):
     __table__ = 'u_service_desk.do'
+
+class Problem(Base):
+    __table__ = 'problem.do'

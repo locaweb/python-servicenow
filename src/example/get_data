@@ -9,6 +9,7 @@ srv = ServiceNow.Server(conn)
 grp = ServiceNow.Group(conn)
 chg = ServiceNow.Change(conn)
 tkt = ServiceNow.Ticket(conn)
+prb = ServiceNow.Problem(conn)
 
 machine = srv.fetch_one({'name': 'machine0001'})
 print machine
@@ -24,3 +25,6 @@ print changes
 
 ticket = tkt.fetch_one({'number': 'TICKET0185412'})
 print ticket
+
+problem = prb.fetch_one({'number': 'PRB11570'})
+print problem
