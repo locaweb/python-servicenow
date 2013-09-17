@@ -9,6 +9,9 @@ def cached(ttl=300):
     def proxy(f):
         @wraps(f)
         def caching(*args, **kwargs):
+            if ttl == 0:
+                return f(*args, **kwargs)
+
             _hash = "%s-%s" % (f.__name__, hashlib.md5("%s%s" % (
                 repr(args[1:]),
                 repr(kwargs)
