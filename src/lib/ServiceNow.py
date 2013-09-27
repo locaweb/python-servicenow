@@ -23,7 +23,7 @@ class Base(object):
     @Utils.cached(ttl=ttl_cache)
     def fetch_one(self, *args):
         try:
-            return self.fetch_all(*args).json()['records'][0]
+            return self.fetch_all(*args)['records'][0]
         except IndexError:
             return {}
 
