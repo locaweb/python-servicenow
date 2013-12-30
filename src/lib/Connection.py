@@ -24,11 +24,15 @@ class Auth(object):
         params = {'JSON': '', 'sysparm_action': 'getKeys', 'sysparm_query': query}
         return self.session.get('%s/%s' % (self.instance, table), params=params)
 
-    def _get(self, table, meta, metaon=None):
+    def _get(self, table, meta, metaon=None, displayvalue=False, displayvariables=False):
         query = '^'.join(['%s=%s' % (field, value) for field, value in meta.iteritems()])
         if metaon:
             query += '^' + '^'.join(['%sON%s' % (field, value) for field, value in metaon.iteritems()])
         params = {'JSON':'', 'sysparm_action': 'getRecords', 'sysparm_query': query}
+        if displayvalue:
+            params['displayvalue'] = 'true'
+        if displayvariables:
+            params['displayvariables'] = 'true'
         return self.session.get('%s/%s' % (self.instance, table), params=params)
 
     def _post(self, table, params):
