@@ -36,6 +36,14 @@ class Auth(object):
             params['displayvariables'] = 'true'
         return self.session.get('%s/%s' % (self.instance, table), params=params, timeout=self.timeout)
 
+    def _get_by_query(self, table, query, displayvalue=False, displayvariables=False):
+        params = {'JSON': '', 'sysparm_action': 'getRecords', 'sysparm_query': query}
+        if displayvalue:
+            params['displayvalue'] = 'true'
+        if displayvariables:
+            params['displayvariables'] = 'true'
+        return self.session.get('%s/%s' % (self.instance, table), params=params, timeout=self.timeout)
+
     def _post(self, table, params):
         return self.session.post('%s/%s?JSON&sysparm_action=insert' % (self.instance, table), params=json.dumps(params), timeout=self.timeout)
 
