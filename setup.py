@@ -11,5 +11,5 @@ setup(
     maintainer_email = 'juliano.martinez@locaweb.com.br',
     package_dir={'servicenow': 'src/lib'},
     packages=['servicenow'],
-    licence = 'Apache',
+    license = 'Apache',
 )
