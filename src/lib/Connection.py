@@ -51,6 +51,9 @@ class Auth(object):
         query = '^'.join(['%s=%s' % (field, value) for field, value in where.iteritems()])
         return self.session.post('%s/%s?JSON&sysparm_query=%s&sysparm_action=update' % (self.instance, table, query), params=json.dumps(params), timeout=self.timeout)
 
+    def _update_by_query(self, table, query, params):
+        return self.session.post('%s/%s?JSON&sysparm_query=%s&sysparm_action=update' % (self.instance, table, query), params=json.dumps(params), timeout=self.timeout)
+
     def _delete(self, table, params):
         if not 'sysparm_sys_id' in params:
             raise IndexError('You must use sysparm_sys_id=<id> to delete')
