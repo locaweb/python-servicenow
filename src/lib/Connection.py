@@ -45,14 +45,14 @@ class Auth(object):
         return self.session.get('%s/%s' % (self.instance, table), params=params, timeout=self.timeout)
 
     def _post(self, table, params):
-        return self.session.post('%s/%s?JSON&sysparm_action=insert' % (self.instance, table), params=json.dumps(params), timeout=self.timeout)
+        return self.session.post('%s/%s?JSON&sysparm_action=insert' % (self.instance, table), params=params, timeout=self.timeout)
 
     def _update(self, table, where, params):
         query = '^'.join(['%s=%s' % (field, value) for field, value in where.iteritems()])
-        return self.session.post('%s/%s?JSON&sysparm_query=%s&sysparm_action=update' % (self.instance, table, query), params=json.dumps(params), timeout=self.timeout)
+        return self.session.post('%s/%s?JSON&sysparm_query=%s&sysparm_action=update' % (self.instance, table, query), params=params, timeout=self.timeout)
 
     def _update_by_query(self, table, query, params):
-        return self.session.post('%s/%s?JSON&sysparm_query=%s&sysparm_action=update' % (self.instance, table, query), params=json.dumps(params), timeout=self.timeout)
+        return self.session.post('%s/%s?JSON&sysparm_query=%s&sysparm_action=update' % (self.instance, table, query), params=params, timeout=self.timeout)
 
     def _delete(self, table, params):
         if not 'sysparm_sys_id' in params:
