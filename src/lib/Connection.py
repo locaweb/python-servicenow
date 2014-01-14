@@ -18,18 +18,30 @@ class Auth(object):
         query = '^'.join(['%s=%s' % (field, value) for field, value in meta.iteritems()])
         if metaon:
             query += '^' + '^'.join(['%sON%s' % (field, value) for field, value in metaon.iteritems()])
-        params = {'JSON':'', 'sysparm_action': 'getKeys', 'sysparm_query': query}
+        params = {
+            'JSON':             '',
+            'sysparm_action':   'getKeys',
+            'sysparm_query': query
+        }
         return self.session.get('%s/%s' % (self.instance, table), params=params, timeout=self.timeout)
 
     def _list_by_query(self, table, query):
-        params = {'JSON': '', 'sysparm_action': 'getKeys', 'sysparm_query': query}
+        params = {
+            'JSON':             '',
+            'sysparm_action':   'getKeys',
+            'sysparm_query':    query
+        }
         return self.session.get('%s/%s' % (self.instance, table), params=params, timeout=self.timeout)
 
     def _get(self, table, meta, metaon=None, displayvalue=False, displayvariables=False):
         query = '^'.join(['%s=%s' % (field, value) for field, value in meta.iteritems()])
         if metaon:
             query += '^' + '^'.join(['%sON%s' % (field, value) for field, value in metaon.iteritems()])
-        params = {'JSON':'', 'sysparm_action': 'getRecords', 'sysparm_query': query}
+        params = {
+            'JSON':             '',
+            'sysparm_action':   'getRecords',
+            'sysparm_query': query
+        }
         if displayvalue:
             params['displayvalue'] = 'true'
         if displayvariables:
@@ -37,22 +49,40 @@ class Auth(object):
         return self.session.get('%s/%s' % (self.instance, table), params=params, timeout=self.timeout)
 
     def _get_by_query(self, table, query, displayvalue=False, displayvariables=False):
-        params = {'JSON': '', 'sysparm_action': 'getRecords', 'sysparm_query': query}
+        params = {
+            'JSON':             '',
+            'sysparm_action':   'getRecords',
+            'sysparm_query': query
+        }
         if displayvalue:
             params['displayvalue'] = 'true'
         if displayvariables:
             params['displayvariables'] = 'true'
         return self.session.get('%s/%s' % (self.instance, table), params=params, timeout=self.timeout)
 
-    def _post(self, table, params):
-        return self.session.post('%s/%s?JSON&sysparm_action=insert' % (self.instance, table), params=params, timeout=self.timeout)
+    def _post(self, table, data):
+        params = {
+            'JSON':             '',
+            'sysparm_action':   'insert'
+        }
+        return self.session.post('%s/%s' % (self.instance, table), params=params, data=json.dumps(data), timeout=self.timeout)
 
-    def _update(self, table, where, params):
+    def _update(self, table, where, data):
         query = '^'.join(['%s=%s' % (field, value) for field, value in where.iteritems()])
-        return self.session.post('%s/%s?JSON&sysparm_query=%s&sysparm_action=update' % (self.instance, table, query), params=params, timeout=self.timeout)
+        params = {
+            'JSON':             '',
+            'sysparm_action':   'update',
+            'sysparm_query':    query
+        }
+        return self.session.post('%s/%s' % (self.instance, table), params=params, data=json.dumps(data), timeout=self.timeout)
 
-    def _update_by_query(self, table, query, params):
-        return self.session.post('%s/%s?JSON&sysparm_query=%s&sysparm_action=update' % (self.instance, table, query), params=params, timeout=self.timeout)
+    def _update_by_query(self, table, query, data):
+        params = {
+            'JSON':             '',
+            'sysparm_action':   'update',
+            'sysparm_query':    query
+        }
+        return self.session.post('%s/%s' % (self.instance, table), params=params, data=json.dumps(data) timeout=self.timeout)
 
     def _delete(self, table, params):
         if not 'sysparm_sys_id' in params:
