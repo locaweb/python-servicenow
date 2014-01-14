@@ -82,7 +82,7 @@ class Auth(object):
             'sysparm_action':   'update',
             'sysparm_query':    query
         }
-        return self.session.post('%s/%s' % (self.instance, table), params=params, data=json.dumps(data) timeout=self.timeout)
+        return self.session.post('%s/%s' % (self.instance, table), params=params, data=json.dumps(data), timeout=self.timeout)
 
     def _delete(self, table, params):
         if not 'sysparm_sys_id' in params:
