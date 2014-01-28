@@ -60,31 +60,50 @@ class Auth(object):
             params['displayvariables'] = 'true'
         return self.session.get('%s/%s' % (self.instance, table), params=params, timeout=self.timeout)
 
-    def _post(self, table, data):
+    def _post(self, table, data, displayvalue=False, displayvariables=False):
         params = {
             'JSON':             '',
             'sysparm_action':   'insert'
         }
-        return self.session.post('%s/%s' % (self.instance, table), params=params, data=json.dumps(data), timeout=self.timeout)
+        if displayvalue:
+            params['displayvalue'] = 'true'
+        if displayvariables:
+            params['displayvariables'] = 'true'
+        return self.session.post('%s/%s' % (self.instance, table), params=params, data=json.dumps(data, ensure_ascii=False), timeout=self.timeout)
 
-    def _update(self, table, where, data):
+    def _update(self, table, where, data, displayvalue=False, displayvariables=False):
         query = '^'.join(['%s=%s' % (field, value) for field, value in where.iteritems()])
         params = {
             'JSON':             '',
             'sysparm_action':   'update',
             'sysparm_query':    query
         }
-        return self.session.post('%s/%s' % (self.instance, table), params=params, data=json.dumps(data), timeout=self.timeout)
+        if displayvalue:
+            params['displayvalue'] = 'true'
+        if displayvariables:
+            params['displayvariables'] = 'true'
+        return self.session.post('%s/%s' % (self.instance, table), params=params, data=json.dumps(data, ensure_ascii=False), timeout=self.timeout)
 
-    def _update_by_query(self, table, query, data):
+    def _update_by_query(self, table, query, data, displayvalue=False, displayvariables=False):
         params = {
             'JSON':             '',
             'sysparm_action':   'update',
             'sysparm_query':    query
         }
-        return self.session.post('%s/%s' % (self.instance, table), params=params, data=json.dumps(data), timeout=self.timeout)
+        if displayvalue:
+            params['displayvalue'] = 'true'
+        if displayvariables:
+            params['displayvariables'] = 'true'
+        return self.session.post('%s/%s' % (self.instance, table), params=params, data=json.dumps(data, ensure_ascii=False), timeout=self.timeout)
 
-    def _delete(self, table, params):
-        if not 'sysparm_sys_id' in params:
-            raise IndexError('You must use sysparm_sys_id=<id> to delete')
-        return self.session.post('%s/%s?JSON&sysparm_action=deleteRecord' % (self.instance, table), params=json.dumps(params), timeout=self.timeout)
+    def _delete(self, table, id, displayvalue=False, displayvariables=False):
+        params = {
+            'JSON':             '',
+            'sysparm_action':   'deleteRecord',
+            'sysparm_sys_id':    id
+        }
+        if displayvalue:
+            params['displayvalue'] = 'true'
+        if displayvariables:
+            params['displayvariables'] = 'true'
+        return self.session.post('%s/%s' % (self.instance, table), params=params, timeout=self.timeout)
