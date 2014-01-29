@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name = 'servicenow',
-    version = '1.0.0',
+    version = '1.0.1',
     description = 'Python Library to interact and manage the ServiceNow database',
     long_description = 'Python Library to interact and manage the ServiceNow database',
     maintainer = 'Juliano Martinez',

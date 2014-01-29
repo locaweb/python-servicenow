@@ -3,6 +3,7 @@ import logging
 import json
 
 class Auth(object):
+
     def __init__(self, username, password, instance, timeout=60, debug=False):
         self.username = username
         self.password = password
@@ -69,7 +70,7 @@ class Auth(object):
             params['displayvalue'] = 'true'
         if displayvariables:
             params['displayvariables'] = 'true'
-        return self.session.post('%s/%s' % (self.instance, table), params=params, data=json.dumps(data, ensure_ascii=False), timeout=self.timeout)
+        return self.session.post('%s/%s' % (self.instance, table), params=params, data=json.dumps(data), timeout=self.timeout)
 
     def _update(self, table, where, data, displayvalue=False, displayvariables=False):
         query = '^'.join(['%s=%s' % (field, value) for field, value in where.iteritems()])
@@ -82,7 +83,7 @@ class Auth(object):
             params['displayvalue'] = 'true'
         if displayvariables:
             params['displayvariables'] = 'true'
-        return self.session.post('%s/%s' % (self.instance, table), params=params, data=json.dumps(data, ensure_ascii=False), timeout=self.timeout)
+        return self.session.post('%s/%s' % (self.instance, table), params=params, data=json.dumps(data), timeout=self.timeout)
 
     def _update_by_query(self, table, query, data, displayvalue=False, displayvariables=False):
         params = {
@@ -94,7 +95,7 @@ class Auth(object):
             params['displayvalue'] = 'true'
         if displayvariables:
             params['displayvariables'] = 'true'
-        return self.session.post('%s/%s' % (self.instance, table), params=params, data=json.dumps(data, ensure_ascii=False), timeout=self.timeout)
+        return self.session.post('%s/%s' % (self.instance, table), params=params, data=json.dumps(data), timeout=self.timeout)
 
     def _delete(self, table, id, displayvalue=False, displayvariables=False):
         params = {
