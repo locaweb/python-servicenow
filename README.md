@@ -75,8 +75,8 @@ Dependencies:
 Contributors:
 ------
 
-- Juliano Martinez [ncode](https://github.com/ncode)
-- James Stewart [amorphic](https://github.com/amorphic)
-- Willian Molinari [Pothix](https://github.com/PotHix)
-- Francisco Wagner Cunha Freire [wgrcunha](https://github.com/wgrcunha)
+- Juliano Martinez ([ncode](https://github.com/ncode))
+- James Stewart ([amorphic](https://github.com/amorphic))
+- Willian Molinari ([Pothix](https://github.com/PotHix))
+- Francisco Wagner Cunha Freire ([wgrcunha](https://github.com/wgrcunha))
 
