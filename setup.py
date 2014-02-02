@@ -7,9 +7,10 @@ setup(
     author_email = 'juliano.martinez@locaweb.com.br',
     name = 'servicenow',
     version = '1.0.1',
-    url = 'https://github.com/locaweb/python-servicenow'
+    url = 'https://github.com/locaweb/python-servicenow',
     description = 'Python Library to interact with and manage the ServiceNow database',
-    long_description = open('README.md').read()
+    install_requires = ['requests','redis'],
+    long_description = open('README.md').read(),
     maintainer = 'Juliano Martinez',
     maintainer_email = 'juliano.martinez@locaweb.com.br',
     package_dir = {'servicenow': 'src/lib'},
