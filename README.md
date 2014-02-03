@@ -2,12 +2,12 @@ Python ServiceNow
 =================
 
 This is a Python Library to interact and manage the ServiceNow database via
-[JSON web service](http://wiki.servicenow.com/index.php?title=JSON_Web_Service).
+[JSON web service](http://wiki.servicenow.com/index.php?title=JSONv2_Web_Service).
 
-Usage:
+Installation:
 ------
 
-### Build the package
+### Using dpkg
 
     $ dpkg-buildpackage -us -uc -rfakeroot
     $ dpkg -i python-servicenow-<version>.deb
@@ -16,6 +16,13 @@ Usage:
 
     $ python setup.py build
     $ python setup.py install
+
+### Using pip
+
+    $ pip install servicenow 
+
+Usage:
+------
 
 ### Example
 
@@ -59,8 +66,17 @@ Usage:
     new_ticket = tkt.create(ticket)
     print ticket
 
+Dependencies:
+------
 
-### Depends
+- python-requests
+- python-redis
 
-* python-requests
-* python-redis
+Contributors:
+------
+
+- Juliano Martinez ([ncode](https://github.com/ncode))
+- James Stewart ([amorphic](https://github.com/amorphic))
+- Willian Molinari ([Pothix](https://github.com/PotHix))
+- Francisco Wagner Cunha Freire ([wgrcunha](https://github.com/wgrcunha))
+

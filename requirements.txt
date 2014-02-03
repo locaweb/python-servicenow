@@ -1,0 +1,4 @@
+--index https://pypi.python.org/simple/
+
+redis>=1.34
+requests>=0.2.0
