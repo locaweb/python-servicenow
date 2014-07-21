@@ -10,6 +10,7 @@ grp = ServiceNow.Group(conn)
 chg = ServiceNow.Change(conn)
 tkt = ServiceNow.Ticket(conn)
 prb = ServiceNow.Problem(conn)
+tsk = ServiceNow.Task(conn)
 
 machine = srv.fetch_one({'name': 'machine0001'})
 print machine
@@ -28,3 +29,7 @@ print ticket
 
 problem = prb.fetch_one({'number': 'PRB11570'})
 print problem
+
+tasks = tsk.fetch_one({'ci_item': machine['sys_id']})A
+print tasks
+

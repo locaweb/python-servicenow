@@ -60,3 +60,6 @@ class Server(Base):
 class Ticket(Base):
     __table__ = 'u_service_desk.do'
 
+class Task(Base):
+        __table__ = 'task_ci_list.do'
+
