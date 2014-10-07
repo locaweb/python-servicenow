@@ -31,7 +31,13 @@ Usage:
     from servicenow import ServiceNow
     from servicenow import Connection
 
+    # Connect using default api method (JSON)
     conn = Connection.Auth(username='edsu', password='bele', instance='servicenowsubdomain')
+
+    # For Dublin+ instances, connect using JSONv2
+    # http://wiki.servicenow.com/index.php?title=Dublin_Release_Notes
+    # conn = Connection.Auth(username='edsu', password='bele', instance='servicenowsubdomain', api='JSONv2')
+
     inc = ServiceNow.Incident(conn)
     srv = ServiceNow.Server(conn)
     grp = ServiceNow.Group(conn)
