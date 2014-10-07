@@ -36,6 +36,10 @@ class Base(object):
     def delete(self, *args):
         return self.Connection._delete(self.__table__, *args).json()
 
+    def last_updated(self, minutes):
+        metaon = {'sys_updated_on': 'Last %d minutes@javascript:gs.minutesAgoStart(%d)@javascript:gs.minutesAgoEnd(0)' % (minutes, minutes)}
+        return self.Connection._get(self.__table__, meta={}, metaon=metaon).json()
+
 class Call(Base):
     __table__ = 'u_new_call.do'
 

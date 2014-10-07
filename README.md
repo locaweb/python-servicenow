@@ -60,6 +60,10 @@ Usage:
     changes = chg.fetch_all({'cmdb_ci': machine['sys_id'], 'review_status': 3})
     print changes
 
+    # Fetch changes updated on the last 60 minutes
+    changes = chg.last_updated(minutes=60)
+    print changes
+
     # list only sys_ids
     changes = chg.list({'cmdb_ci': machine['sys_id'], 'review_status': 3})
     print changes
