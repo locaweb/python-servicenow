@@ -1,3 +1,9 @@
+python-servicenow (2.0.0-0) stable; urgency=low
+
+  *   Version to use on pip
+
+ -- Francisco Freire <francisco.freire@locaweb.com.br>  Wed, 8 Oct 2014 16:53:01 -0300
+
 python-servicenow (0.0.3-0) stable; urgency=low
 
   *   Added SOAP driver (_get only)
