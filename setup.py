@@ -11,9 +11,9 @@ setup(
     description = 'Python Library to interact with and manage the ServiceNow database',
     install_requires = ['requests','redis'],
     long_description = open('README.md').read(),
-    maintainer = 'Juliano Martinez',
-    maintainer_email = 'juliano.martinez@locaweb.com.br',
-    package_dir = {'servicenow': 'src/lib'},
-    packages = ['servicenow'],
+    maintainer = 'Francisco Freire',
+    maintainer_email = 'francisco.freire@locaweb.com.br',
+    package_dir = {'servicenow': 'src/lib', 'servicenow.drivers': 'src/lib/drivers'},
+    packages = ['servicenow', 'servicenow.drivers'],
     license = 'Apache',
 )

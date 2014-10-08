@@ -1,3 +1,10 @@
+python-servicenow (0.0.3-0) stable; urgency=low
+
+  *   Added SOAP driver (_get only)
+  *   Added support for Extended query parameters (SOAP)
+
+ -- Francisco Freire <francisco.freire@locaweb.com.br>  Wed, 8 Oct 2014 12:18:01 -0300
+
 python-servicenow (0.0.2-0) stable; urgency=low
 
   * commit b440494170e9588da7ae7bf7ddab4a01ce6e95d2

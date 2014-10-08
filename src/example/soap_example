@@ -1,0 +1,35 @@
+#!/usr/bin/python
+
+from servicenow import ServiceNow
+from servicenow.drivers import SOAP
+
+conn = Connection.SOAP(username='edsu', password='bele', instance='demo')
+inc = ServiceNow.Incident(conn)
+srv = ServiceNow.Server(conn)
+grp = ServiceNow.Group(conn)
+chg = ServiceNow.Change(conn)
+tkt = ServiceNow.Ticket(conn)
+prb = ServiceNow.Problem(conn)
+tsk = ServiceNow.Task(conn)
+
+machine = srv.fetch_one({'name': 'machine0001'})
+print machine
+
+inc = inc.fetch_one({'number': 'INC123456'})
+print inc
+
+group = grp.fetch_one({'name': 'MY-Team'})
+print group
+
+changes = chg.fetch_all({'cmdb_ci': machine['sys_id'], 'review_status': 3})
+print changes
+
+ticket = tkt.fetch_one({'number': 'TICKET0185412'})
+print ticket
+
+problem = prb.fetch_one({'number': 'PRB11570'})
+print problem
+
+tasks = tsk.fetch_one({'ci_item': machine['sys_id']})A
+print tasks
+

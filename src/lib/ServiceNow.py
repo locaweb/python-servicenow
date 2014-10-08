@@ -9,36 +9,43 @@ class Base(object):
         self.Connection = Connection
 
     @Utils.cached(ttl=ttl_cache)
-    def list_by_query(self, *args):
-        return self.Connection._list_by_query(self.__table__, *args).json()
+    def list_by_query(self, *args, **kwargs):
+        return self.format(self.Connection._list_by_query(self.__table__, *args, **kwargs))
 
     @Utils.cached(ttl=ttl_cache)
-    def list(self, *args):
-        return self.Connection._list(self.__table__, *args).json()
+    def list(self, *args, **kwargs):
+        return self.format(self.Connection._list(self.__table__, *args, **kwargs))
 
     @Utils.cached(ttl=ttl_cache)
-    def fetch_all(self, *args):
-        return self.Connection._get(self.__table__, *args).json()
+    def fetch_all(self, *args, **kwargs):
+        return self.format(self.Connection._get(self.__table__, *args, **kwargs))
 
     @Utils.cached(ttl=ttl_cache)
-    def fetch_one(self, *args):
-        try:
-            return self.fetch_all(*args)['records'][0]
-        except IndexError:
-            return {}
+    def fetch_one(self, *args, **kwargs):
+        response = self.fetch_all(*args, **kwargs)
+        if 'records' in response:
+            if len(response['records']) > 0:
+                return response['records'][0]
+        else:
+            if len(response) > 0:
+                return response[0]
+        return {}
 
-    def create(self, *args):
-        return self.Connection._post(self.__table__, *args).json()
+    def create(self, *args, **kwargs):
+        return self.format(self.Connection._post(self.__table__, *args, **kwargs))
 
-    def update(self, where, *args):
-        return self.Connection._update(self.__table__, where, *args).json()
+    def update(self, where, *args, **kwargs):
+        return self.format(self.Connection._update(self.__table__, where, *args, **kwargs))
 
-    def delete(self, *args):
-        return self.Connection._delete(self.__table__, *args).json()
+    def delete(self, *args, **kwargs):
+        return self.format(self.Connection._delete(self.__table__, *args, **kwargs))
 
-    def last_updated(self, minutes):
+    def format(self, response):
+        return self.Connection._format(response)
+
+    def last_updated(self, minutes, **kwargs):
         metaon = {'sys_updated_on': 'Last %d minutes@javascript:gs.minutesAgoStart(%d)@javascript:gs.minutesAgoEnd(0)' % (minutes, minutes)}
-        return self.Connection._get(self.__table__, meta={}, metaon=metaon).json()
+        return self.format(self.Connection._get(self.__table__, meta={}, metaon=metaon, **kwargs))
 
 class Call(Base):
     __table__ = 'u_new_call.do'
@@ -66,4 +73,3 @@ class Ticket(Base):
 
 class Task(Base):
         __table__ = 'task_ci_list.do'
-

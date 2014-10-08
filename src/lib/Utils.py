@@ -26,3 +26,9 @@ def cached(ttl=300):
                 return f(*args, **kwargs)
         return caching
     return proxy
+
+def format_query(meta={}, metaon={}):
+    query = '^'.join(['%s=%s' % (field, value) for field, value in meta.iteritems()])
+    if metaon:
+        query += '^' + '^'.join(['%sON%s' % (field, value) for field, value in metaon.iteritems()])
+    return query

@@ -38,6 +38,17 @@ Usage:
     # http://wiki.servicenow.com/index.php?title=Dublin_Release_Notes
     # conn = Connection.Auth(username='edsu', password='bele', instance='servicenowsubdomain', api='JSONv2')
 
+    # For SOAP connection
+    #
+    # from servicenow.drivers import SOAP
+    # conn = SOAP.Auth(username='edsu', password='bele', instance='servicenowsubdomain')
+    #
+    # SOAP support more than 250 results, example
+    # Get the changes updated on the last 30 minutes, Display values instead of sys_ids and change response limit to 10k
+    # http://wiki.servicenow.com/index.php?title=Direct_Web_Services#Extended_Query_Parameters
+    #
+    # chg.last_updated(minutes=30, params={'displayvalue': 'true'}, extended={'__limit': 10000}):
+
     inc = ServiceNow.Incident(conn)
     srv = ServiceNow.Server(conn)
     grp = ServiceNow.Group(conn)

@@ -2,6 +2,8 @@ import requests
 import logging
 import json
 
+from servicenow import Utils
+
 class Auth(object):
 
     def __init__(self, username, password, instance, timeout=60, debug=False, api='JSON'):
@@ -16,96 +18,79 @@ class Auth(object):
         self.session.auth = (self.username, self.password)
         self.api = api
 
-    def _list(self, table, meta, metaon=None):
-        query = '^'.join(['%s=%s' % (field, value) for field, value in meta.iteritems()])
-        if metaon:
-            query += '^' + '^'.join(['%sON%s' % (field, value) for field, value in metaon.iteritems()])
-        params = {
+    def _list(self, table, *args, **kwargs):
+        query = Utils.format_query(kwargs.get('meta', {}), kwargs.get('metaon', {}))
+        params = kwargs.get('params', {})
+        params.update({
             self.api:             '',
             'sysparm_action':   'getKeys',
             'sysparm_query': query
-        }
+        })
         return self.session.get('%s/%s' % (self.instance, table), params=params, timeout=self.timeout)
 
-    def _list_by_query(self, table, query):
-        params = {
+    def _list_by_query(self, table, query, *args, **kwargs):
+        params = kwargs.get('params', {})
+        params.update({
             self.api:             '',
             'sysparm_action':   'getKeys',
             'sysparm_query':    query
-        }
+        })
         return self.session.get('%s/%s' % (self.instance, table), params=params, timeout=self.timeout)
 
-    def _get(self, table, meta, metaon=None, displayvalue=False, displayvariables=False):
-        query = '^'.join(['%s=%s' % (field, value) for field, value in meta.iteritems()])
-        if metaon:
-            query += '^' + '^'.join(['%sON%s' % (field, value) for field, value in metaon.iteritems()])
-        params = {
+    def _get(self, table, *args, **kwargs):
+        query = Utils.format_query(kwargs.get('meta', {}), kwargs.get('metaon', {}))
+        params = kwargs.get('params', {})
+        params.update({
             self.api:             '',
             'sysparm_action':   'getRecords',
             'sysparm_query': query
-        }
-        if displayvalue:
-            params['displayvalue'] = 'true'
-        if displayvariables:
-            params['displayvariables'] = 'true'
+        })
         return self.session.get('%s/%s' % (self.instance, table), params=params, timeout=self.timeout)
 
-    def _get_by_query(self, table, query, displayvalue=False, displayvariables=False):
-        params = {
+    def _get_by_query(self, table, query, *args, **kwargs):
+        params = kwargs.get('params', {})
+        params.update({
             self.api:             '',
             'sysparm_action':   'getRecords',
             'sysparm_query': query
-        }
-        if displayvalue:
-            params['displayvalue'] = 'true'
-        if displayvariables:
-            params['displayvariables'] = 'true'
+        })
         return self.session.get('%s/%s' % (self.instance, table), params=params, timeout=self.timeout)
 
-    def _post(self, table, data, displayvalue=False, displayvariables=False):
-        params = {
+    def _post(self, table, data, *args, **kwargs):
+        params = kwargs.get('params', {})
+        params.update({
             self.api:             '',
             'sysparm_action':   'insert'
-        }
-        if displayvalue:
-            params['displayvalue'] = 'true'
-        if displayvariables:
-            params['displayvariables'] = 'true'
+        })
         return self.session.post('%s/%s' % (self.instance, table), params=params, data=json.dumps(data), timeout=self.timeout)
 
-    def _update(self, table, where, data, displayvalue=False, displayvariables=False):
-        query = '^'.join(['%s=%s' % (field, value) for field, value in where.iteritems()])
-        params = {
+    def _update(self, table, where, data, *args, **kwargs):
+        query = Utils.format_query(where, {})
+        params = kwargs.get('params', {})
+        params.update({
             self.api:             '',
             'sysparm_action':   'update',
             'sysparm_query':    query
-        }
-        if displayvalue:
-            params['displayvalue'] = 'true'
-        if displayvariables:
-            params['displayvariables'] = 'true'
+        })
         return self.session.post('%s/%s' % (self.instance, table), params=params, data=json.dumps(data), timeout=self.timeout)
 
-    def _update_by_query(self, table, query, data, displayvalue=False, displayvariables=False):
-        params = {
+    def _update_by_query(self, table, query, data, *args, **kwargs):
+        params = kwargs.get('params', {})
+        params.update({
             self.api:             '',
             'sysparm_action':   'update',
             'sysparm_query':    query
-        }
-        if displayvalue:
-            params['displayvalue'] = 'true'
-        if displayvariables:
-            params['displayvariables'] = 'true'
+        })
         return self.session.post('%s/%s' % (self.instance, table), params=params, data=json.dumps(data), timeout=self.timeout)
 
-    def _delete(self, table, id, displayvalue=False, displayvariables=False):
-        params = {
+    def _delete(self, table, id, *args, **kwargs):
+        params = kwargs.get('params', {})
+        params.update({
             self.api:             '',
             'sysparm_action':   'deleteRecord',
             'sysparm_sys_id':    id
-        }
-        if displayvalue:
-            params['displayvalue'] = 'true'
-        if displayvariables:
-            params['displayvariables'] = 'true'
+        })
         return self.session.post('%s/%s' % (self.instance, table), params=params, timeout=self.timeout)
+
+    def _format(self, response):
+        return json.loads(response.text)
