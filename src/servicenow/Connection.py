@@ -18,8 +18,8 @@ class Auth(object):
         self.session.auth = (self.username, self.password)
         self.api = api
 
-    def _list(self, table, *args, **kwargs):
-        query = Utils.format_query(kwargs.get('meta', {}), kwargs.get('metaon', {}))
+    def _list(self, table, meta={}, **kwargs):
+        query = Utils.format_query(meta, kwargs.get('metaon', {}))
         params = kwargs.get('params', {})
         params.update({
             self.api:             '',
@@ -28,7 +28,7 @@ class Auth(object):
         })
         return self.session.get('%s/%s' % (self.instance, table), params=params, timeout=self.timeout)
 
-    def _list_by_query(self, table, query, *args, **kwargs):
+    def _list_by_query(self, table, query, **kwargs):
         params = kwargs.get('params', {})
         params.update({
             self.api:             '',
@@ -37,8 +37,8 @@ class Auth(object):
         })
         return self.session.get('%s/%s' % (self.instance, table), params=params, timeout=self.timeout)
 
-    def _get(self, table, *args, **kwargs):
-        query = Utils.format_query(kwargs.get('meta', {}), kwargs.get('metaon', {}))
+    def _get(self, table, meta={}, **kwargs):
+        query = Utils.format_query(meta, kwargs.get('metaon', {}))
         params = kwargs.get('params', {})
         params.update({
             self.api:             '',
@@ -47,7 +47,7 @@ class Auth(object):
         })
         return self.session.get('%s/%s' % (self.instance, table), params=params, timeout=self.timeout)
 
-    def _get_by_query(self, table, query, *args, **kwargs):
+    def _get_by_query(self, table, query, **kwargs):
         params = kwargs.get('params', {})
         params.update({
             self.api:             '',
@@ -56,7 +56,7 @@ class Auth(object):
         })
         return self.session.get('%s/%s' % (self.instance, table), params=params, timeout=self.timeout)
 
-    def _post(self, table, data, *args, **kwargs):
+    def _post(self, table, data, **kwargs):
         params = kwargs.get('params', {})
         params.update({
             self.api:             '',
@@ -64,7 +64,7 @@ class Auth(object):
         })
         return self.session.post('%s/%s' % (self.instance, table), params=params, data=json.dumps(data), timeout=self.timeout)
 
-    def _update(self, table, where, data, *args, **kwargs):
+    def _update(self, table, where, data, **kwargs):
         query = Utils.format_query(where, {})
         params = kwargs.get('params', {})
         params.update({
@@ -74,7 +74,7 @@ class Auth(object):
         })
         return self.session.post('%s/%s' % (self.instance, table), params=params, data=json.dumps(data), timeout=self.timeout)
 
-    def _update_by_query(self, table, query, data, *args, **kwargs):
+    def _update_by_query(self, table, query, data, **kwargs):
         params = kwargs.get('params', {})
         params.update({
             self.api:             '',
@@ -83,7 +83,7 @@ class Auth(object):
         })
         return self.session.post('%s/%s' % (self.instance, table), params=params, data=json.dumps(data), timeout=self.timeout)
 
-    def _delete(self, table, id, *args, **kwargs):
+    def _delete(self, table, id, **kwargs):
         params = kwargs.get('params', {})
         params.update({
             self.api:             '',

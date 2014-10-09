@@ -21,25 +21,28 @@ class Auth(Connection.Auth):
         server = self._get_proxy(table, params)
         return server.getRecords(__encoded_query=Utils.format_query(meta, metaon), **extended)
 
-    def _list(self, table, meta, metaon=None):
+    def _list(self, table, meta, metaon={}, params={}, extended={}):
+        server = self._get_proxy(table, params)
+        return server.getKeys(__encoded_query=Utils.format_query(meta, metaon), **extended)
+
+    def _list_by_query(self, table, query, params={}, extended={}):
+        server = self._get_proxy(table, params)
+        return server.getKeys(__encoded_query=query, **extended)
+
+    def _get_by_query(self, table, query, params={}, extended={}):
+        server = self._get_proxy(table, params)
+        return server.getRecords(__encoded_query=query, **extended)
+
+    def _post(self, table, data, params={}):
         raise NotImplemented
 
-    def _list_by_query(self, table, query):
+    def _update(self, table, where, data, params={}):
         raise NotImplemented
 
-    def _get_by_query(self, table, query, displayvalue=False, displayvariables=False):
+    def _update_by_query(self, table, query, data):
         raise NotImplemented
 
-    def _post(self, table, data, displayvalue=False, displayvariables=False):
-        raise NotImplemented
-
-    def _update(self, table, where, data, displayvalue=False, displayvariables=False):
-        raise NotImplemented
-
-    def _update_by_query(self, table, query, data, displayvalue=False, displayvariables=False):
-        raise NotImplemented
-
-    def _delete(self, table, id, displayvalue=False, displayvariables=False):
+    def _delete(self, table, id, params={}, extended={}):
         raise NotImplemented
 
     def _format(self, response):
