@@ -34,11 +34,17 @@ class Base(object):
     def create(self, data, **kwargs):
         return self.format(self.Connection._post(self.__table__, data, **kwargs))
 
+    def create_multiple(self, data, **kwargs):
+        return self.format(self.Connection._post_multiple(self.__table__, data, **kwargs))
+
     def update(self, where, data, **kwargs):
         return self.format(self.Connection._update(self.__table__, where, data, **kwargs))
 
     def delete(self, id, **kwargs):
         return self.format(self.Connection._delete(self.__table__, id, **kwargs))
+
+    def delete_multiple(self, query, **kwargs):
+        return self.format(self.Connection._delete_multiple(self.__table__, query, **kwargs))
 
     def format(self, response):
         return self.Connection._format(response)
@@ -72,4 +78,4 @@ class Ticket(Base):
     __table__ = 'u_service_desk.do'
 
 class Task(Base):
-        __table__ = 'task_ci_list.do'
+    __table__ = 'task_ci_list.do'

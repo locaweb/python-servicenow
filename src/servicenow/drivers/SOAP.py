@@ -36,6 +36,9 @@ class Auth(Connection.Auth):
     def _post(self, table, data, params={}):
         raise NotImplemented
 
+    def _post_multiple(self, table, data, params={}):
+        raise NotImplemented
+
     def _update(self, table, where, data, params={}):
         raise NotImplemented
 
@@ -43,6 +46,9 @@ class Auth(Connection.Auth):
         raise NotImplemented
 
     def _delete(self, table, id, params={}, extended={}):
+        raise NotImplemented
+
+    def _delete_multiple(self, table, query, params={}):
         raise NotImplemented
 
     def _format(self, response):
