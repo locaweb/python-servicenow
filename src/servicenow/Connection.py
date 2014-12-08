@@ -64,6 +64,14 @@ class Auth(object):
         })
         return self.session.post('%s/%s' % (self.instance, table), params=params, data=json.dumps(data), timeout=self.timeout)
 
+    def _post_multiple(self, table, data, **kwargs):
+        params = kwargs.get('params', {})
+        params.update({
+            self.api:             '',
+            'sysparm_action':   'insertMultiple'
+        })
+        return self.session.post('%s/%s' % (self.instance, table), params=params, data=json.dumps(data), timeout=self.timeout)
+
     def _update(self, table, where, data, **kwargs):
         query = Utils.format_query(where, {})
         params = kwargs.get('params', {})
@@ -89,6 +97,15 @@ class Auth(object):
             self.api:             '',
             'sysparm_action':   'deleteRecord',
             'sysparm_sys_id':    id
+        })
+        return self.session.post('%s/%s' % (self.instance, table), params=params, timeout=self.timeout)
+
+    def _delete_multiple(self, table, query, **kwargs):
+        params = kwargs.get('params', {})
+        params.update({
+            self.api:             '',
+            'sysparm_action':   'deleteMultiple',
+            'sysparm_query':    query
         })
         return self.session.post('%s/%s' % (self.instance, table), params=params, timeout=self.timeout)
 
