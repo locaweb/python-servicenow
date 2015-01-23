@@ -10,7 +10,7 @@ class Base(object):
 
     @Utils.cached(ttl=ttl_cache)
     def list_by_query(self, query, **kwargs):
-        return self.format(self.Connection._list_by_query(self.__table__, meta, **kwargs))
+        return self.format(self.Connection._list_by_query(self.__table__, query, **kwargs))
 
     @Utils.cached(ttl=ttl_cache)
     def list(self, meta, **kwargs):
