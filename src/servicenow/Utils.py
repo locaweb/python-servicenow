@@ -22,13 +22,22 @@ def cached(ttl=300):
                     cache = json.dumps(f(*args, **kwargs))
                     rd.setex(_hash, cache, ttl)
                 return json.loads(cache)
-            except Exception, e:
+            except Exception:
                 return f(*args, **kwargs)
         return caching
     return proxy
 
 def format_query(meta={}, metaon={}):
-    query = '^'.join(['%s=%s' % (field, value) for field, value in meta.iteritems()])
+    try:
+        items = meta.iteritems()
+        if metaon:
+            metaon_items = metaon.iteritems()
+    except AttributeError:
+        items = meta.items()
+        if metaon:
+            metaon_items = metaon.items()
+
+    query = '^'.join(['%s=%s' % (field, value) for field, value in items])
     if metaon:
-        query += '^' + '^'.join(['%sON%s' % (field, value) for field, value in metaon.iteritems()])
+        query += '^' + '^'.join(['%sON%s' % (field, value) for field, value in metaon_items])
     return query
