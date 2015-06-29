@@ -19,6 +19,10 @@ class Base(object):
     @Utils.cached(ttl=ttl_cache)
     def fetch_all(self, meta, **kwargs):
         return self.format(self.Connection._get(self.__table__, meta, **kwargs))
+        
+    @Utils.cached(ttl=ttl_cache)
+    def fetch_all_by_query(self, query, **kwargs):
+        return self.format(self.Connection._get_by_query(self.__table__, query, **kwargs))
 
     @Utils.cached(ttl=ttl_cache)
     def fetch_one(self, meta, **kwargs):
