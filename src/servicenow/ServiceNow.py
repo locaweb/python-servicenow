@@ -65,6 +65,9 @@ class Group(Base):
 class Incident(Base):
     __table__ = 'incident.do'
 
+class Journal(Base):
+    __table__ = 'sys_journal_field.do'
+
 class Problem(Base):
     __table__ = 'problem.do'
 
