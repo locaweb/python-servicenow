@@ -79,3 +79,6 @@ class Ticket(Base):
 
 class Task(Base):
     __table__ = 'task_ci_list.do'
+
+class User(Base):
+    __table__ = 'sys_user.do'
