@@ -3,7 +3,7 @@
 from servicenow import ServiceNow
 from servicenow.drivers import SOAP
 
-conn = Connection.SOAP(username='edsu', password='bele', instance='demo')
+conn = SOAP.Auth(username='edsu', password='bele', instance='demo')
 inc = ServiceNow.Incident(conn)
 srv = ServiceNow.Server(conn)
 grp = ServiceNow.Group(conn)
@@ -30,6 +30,6 @@ print ticket
 problem = prb.fetch_one({'number': 'PRB11570'})
 print problem
 
-tasks = tsk.fetch_one({'ci_item': machine['sys_id']})A
+tasks = tsk.fetch_one({'ci_item': machine['sys_id']})
 print tasks
 
