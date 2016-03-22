@@ -18,6 +18,8 @@ class Auth(object):
         self.session.auth = (self.username, self.password)
         self.api = api
         self.proxies = proxies
+        if api.startswith('JSON'):
+            self.session.headers.update({'Accept': 'application/json'})
 
     def _list(self, table, meta={}, **kwargs):
         query = Utils.format_query(meta, kwargs.get('metaon', {}))
