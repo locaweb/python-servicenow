@@ -27,6 +27,12 @@ def cached(ttl=300):
         return caching
     return proxy
 
+def format_query_type(value):
+    if type(value) in (type([]), type(())):
+        return ('IN', ','.join(value))
+    else:
+        return ('=', value)
+
 def format_query(meta={}, metaon={}):
     try:
         items = meta.iteritems()
@@ -37,7 +43,7 @@ def format_query(meta={}, metaon={}):
         if metaon:
             metaon_items = metaon.items()
 
-    query = '^'.join(['%s=%s' % (field, value) for field, value in items])
+    query = '^'.join(['%s%s%s' % (field, format_query_type(value)[0], format_query_type(value)[1]) for field, value in items])
     if metaon:
         query += '^' + '^'.join(['%sON%s' % (field, value) for field, value in metaon_items])
     return query
