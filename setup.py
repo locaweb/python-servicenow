@@ -6,7 +6,7 @@ setup(
     author = 'Juliano Martinez',
     author_email = 'juliano.martinez@locaweb.com.br',
     name = 'servicenow',
-    version = '2.1.0',
+    version = '2.1.1',
     url = 'https://github.com/locaweb/python-servicenow',
     description = 'Python Library to interact with and manage the ServiceNow database',
     install_requires = ['requests','redis','SOAPpy'],
