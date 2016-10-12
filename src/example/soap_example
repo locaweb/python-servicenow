@@ -13,23 +13,23 @@ prb = ServiceNow.Problem(conn)
 tsk = ServiceNow.Task(conn)
 
 machine = srv.fetch_one({'name': 'machine0001'})
-print machine
+print(machine)
 
-inc = inc.fetch_one({'number': 'INC123456'})
-print inc
+inci = inc.fetch_one({'number': 'INC123456'})
+print(inci)
 
 group = grp.fetch_one({'name': 'MY-Team'})
-print group
+print(group)
 
 changes = chg.fetch_all({'cmdb_ci': machine['sys_id'], 'review_status': 3})
-print changes
+print(changes)
 
 ticket = tkt.fetch_one({'number': 'TICKET0185412'})
-print ticket
+print(ticket)
 
 problem = prb.fetch_one({'number': 'PRB11570'})
-print problem
+print(problem)
 
-tasks = tsk.fetch_one({'ci_item': machine['sys_id']})A
-print tasks
+tasks = tsk.fetch_one({'ci_item': machine['sys_id']})
+print(tasks)
 
