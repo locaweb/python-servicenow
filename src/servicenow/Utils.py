@@ -12,7 +12,7 @@ def cached(ttl=300):
             if ttl == 0:
                 return f(*args, **kwargs)
 
-            _hash = "%s-%s" % (f.__name__, hashlib.md5("%s%s" % (
+            _hash = "{0}-{1}".format(f.__name__, hashlib.md5("{0}{1}".format(
                 repr(args[1:]),
                 repr(kwargs)
             )).hexdigest())
@@ -27,23 +27,28 @@ def cached(ttl=300):
         return caching
     return proxy
 
+
 def format_query_type(value):
     if type(value) in (type([]), type(())):
         return ('IN', ','.join(value))
     else:
         return ('=', value)
 
+
 def format_query(meta={}, metaon={}):
     try:
-        items = meta.iteritems()
+        items = meta.items()
         if metaon:
-            metaon_items = metaon.iteritems()
+            metaon_items = metaon.items()
     except AttributeError:
         items = meta.items()
         if metaon:
             metaon_items = metaon.items()
 
-    query = '^'.join(['%s%s%s' % (field, format_query_type(value)[0], format_query_type(value)[1]) for field, value in items])
+    query = '^'.join(['{0}{1}{2}'.format(
+        field, format_query_type(value)[0],
+        format_query_type(value)[1]) for field, value in items])
     if metaon:
-        query += '^' + '^'.join(['%sON%s' % (field, value) for field, value in metaon_items])
+        query += '^' + '^'.join(['{0}ON{1}'.format(field, value)
+                                 for field, value in metaon_items])
     return query
