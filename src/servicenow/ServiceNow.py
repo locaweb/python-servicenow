@@ -20,7 +20,7 @@ class Base(object):
     @Utils.cached(ttl=ttl_cache)
     def fetch_all(self, meta, **kwargs):
         return self.format(self.Connection._get(self.__table__, meta, **kwargs))
-        
+
     @Utils.cached(ttl=ttl_cache)
     def fetch_all_by_query(self, query, **kwargs):
         return self.format(self.Connection._get_by_query(self.__table__, query, **kwargs))
@@ -109,3 +109,7 @@ class Task(Base):
 
 class User(Base):
     __table__ = 'sys_user.do'
+
+
+class Customer(Base):
+    __table__ = 'core_company.do'
