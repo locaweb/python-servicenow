@@ -113,3 +113,27 @@ class User(Base):
 
 class Customer(Base):
     __table__ = 'core_company.do'
+
+
+class Router(Base):
+    __table__ = 'cmdb_ci_ip_router.do'
+
+
+class Switch(Base):
+    __table__ = 'cmdb_ci_ip_switch.do'
+
+
+class Cluster(Base):
+    __table__ = 'cmdb_ci_cluster.do'
+
+
+class Firewall(Base):
+    __table__ = 'u_firewall.do'
+
+
+class VPN(Base):
+    __table__ = 'cmdb_ci_vpn.do'
+
+
+class ConfigurationItem(Base):
+    __table__ = 'cmdb_ci.do'
