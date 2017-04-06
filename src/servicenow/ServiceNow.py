@@ -92,7 +92,7 @@ class Problem(Base):
 
 
 class Request(Base):
-    __table__ = 'u_request.do'
+    __table__ = 'sc_request.do'
 
 class Rtask(Base):
     __table__ = 'sc_task.do'
